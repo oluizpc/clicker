@@ -1,0 +1,28 @@
+[package]
+name = "autoclicker"
+version = "0.1.0"
+edition = "2021"
+description = "Auto clicker com GUI, hotkey global, jitter, perfis e filtro de janela."
+
+[dependencies]
+eframe = "0.27"
+egui = "0.27"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+rand = "0.8"
+
+[target.'cfg(windows)'.build-dependencies]
+winresource = "0.1"
+
+[target.'cfg(windows)'.dependencies]
+windows = { version = "0.56", features = [
+    "Win32_Foundation",
+    "Win32_UI_Input_KeyboardAndMouse",
+    "Win32_UI_WindowsAndMessaging",
+] }
+
+[profile.release]
+opt-level = 3
+lto = true
+strip = true
+panic = "abort"
